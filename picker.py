@@ -36,15 +36,18 @@ def episodes_list(show_id, specials=False):
     and returns a complete list of episodes from that show with
     episode name, season number, episode number, and description
     """
-    request_url = TVMAZE_URL + EPISODE_LIST.format(show_id)
+    request_url = TVMAZE_URL + EPISODE_LIST.format(str(show_id))
     if specials:
         request_url += SPECIALS_QUERYSTRING 
     try:
-        response = requests.get(TVMAZE_URL + EPISODE_LIST.format(show_id))
+        response = requests.get(request_url)
         results_json = response.json()
         results = []
         for episode in results_json:
-            description = re.sub(r"\</?p\>", "", episode['summary'])
+            if episode['summary']:
+                description = re.sub(r"\</?p\>", "", episode['summary'])
+            else:
+                description = 'none'
             results.append({
                 'name': episode['name'],
                 'season': episode['season'],

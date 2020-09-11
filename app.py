@@ -32,7 +32,7 @@ def random_episode(show_id, show_name):
 The random episode picker has found this episode from {show_name}:
 Name: {episode_name} | Season: {season} Episode: {episode_num}
 Description: {description}
-Type 's' for new show | 'n' for new episode | 'e' to exit
+Type 'show' for new show | 'ep' for new episode | 'exit' to exit app
 """.format(
         show_name = show_name,
         episode_name = random_episode_info['name'],
@@ -40,9 +40,9 @@ Type 's' for new show | 'n' for new episode | 'e' to exit
         episode_num = random_episode_info['number'],
         description = random_episode_info['description']
     ))
-    if user_input.lower() == 's':
+    if user_input.lower() == 'show':
         show_search_prompt()
-    elif user_input.lower() == 'n':
+    elif user_input.lower() == 'ep':
         random_episode(show_id, show_name)
     else:
         pass
