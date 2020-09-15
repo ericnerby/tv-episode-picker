@@ -1,4 +1,4 @@
-from picker import search_shows, episodes_list
+from connections import search_shows, episodes_list
 from random import choice
 
 
