@@ -19,6 +19,6 @@ I made this python app which pulls episode data for whatever show you want from 
 
 ## How it works
 
-Random TV Episode Picker uses the `requests` library to interact with the [TV Maze API](https://www.tvmaze.com/api), and then randomly picks an episode from the show you've chosen.
+Random TV Episode Picker uses the python `requests` library to interact with the [TV Maze API](https://www.tvmaze.com/api), and then randomly picks an episode from the show you've chosen.
 
 You pick the show, and the app picks the episode. If you don't like the episode, just tell it to pick another one!
