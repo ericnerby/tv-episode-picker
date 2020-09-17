@@ -5,6 +5,7 @@ import requests
 
 TVMAZE_URL = 'http://api.tvmaze.com/'
 SHOW_SEARCH = 'search/shows?q={}'
+SHOW_INFO = 'shows/{}'
 EPISODE_LIST = 'shows/{}/episodes'
 SPECIALS_QUERYSTRING = '?specials=1'
 
@@ -29,6 +30,25 @@ def search_shows(query):
             return None
     except Exception as e:
         print('Something went wrong retrieving the data.\nError: {}'.format(e))
+
+
+def show_info(show_id):
+    """Takes a show id and returns a dictionary
+    with information about the show"""
+    try:
+        response = requests.get(TVMAZE_URL + SHOW_INFO.format(show_id))
+        show_info = response.json()
+        if show_info['summary']:
+            summary = re.sub(r"\</?p\>", "", show_info['summary'])
+        else:
+            summary = 'none'
+        return {
+            'name': show_info['name'],
+            'premiered': show_info['premiered'],
+            'summary': summary,
+        }
+    except Exception as e:
+        print('Something went wrong retrieving the data\nError: {}'.format(e))
 
 
 def episodes_list(show_id, specials=False):

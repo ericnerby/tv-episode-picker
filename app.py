@@ -1,4 +1,4 @@
-from connections import search_shows, episodes_list
+from connections import search_shows, episodes_list, show_info
 from random import choice
 
 
@@ -16,10 +16,10 @@ def list_shows(search_results):
     for index, show in enumerate(search_results, 1):
         print("{}. {}".format(index, show['name']))
     show_index = int(
-        input("Type the number of the show you would like to select from the list: ")
+        input("Type the number of the show you would like to select from the list: ").strip()
     ) - 1
     if search_results[show_index]:
-        random_episode(search_results[show_index]['show_id'], search_results[show_index]['name'])
+        preview_show(search_results, search_results[show_index]['show_id'])
     else:
         print("Please try again with a number from the list.")
         list_shows(search_results)
@@ -48,4 +48,20 @@ Type 'show' for new show | 'ep' for new episode | 'exit' to exit app
         pass
 
 
-show_search_prompt()
+def preview_show(search_results, show_id):
+    show = show_info(show_id)
+    print("{name} | Premiere Date: {premiered}".format(
+        name = show['name'],
+        premiered = show['premiered'],
+    ))
+    print("Description: {}".format(show['summary']))
+    print("To pick a random episode from this show, type 'r'.")
+    user_input = input("To go back to the search results, type 's'.")
+    if user_input.lower() == 'r':
+        random_episode(show_id, show['name'])
+    else:
+        list_shows(search_results)
+
+
+if __name__ == '__main__':
+    show_search_prompt()
