@@ -51,16 +51,13 @@ Type 'show' for new show | 'ep' for new episode | 'exit' to exit app
 
 def preview_show(search_results, show_id):
     show = show_info(show_id)
-    user_input = input("""
-    {name} | Premiere Date: {premiered}
-    Description: {summary}
-    To pick a random episode from this show, type 'r'.
-    To go back to the search results, type 's'.
-    """.format(
+    print("{name} | Premiere Date: {premiered}".format(
         name = show['name'],
         premiered = show['premiered'],
-        summary = show['summary'],
     ))
+    print("Description: {}".format(show['summary']))
+    print("To pick a random episode from this show, type 'r'.")
+    user_input = input("To go back to the search results, type 's'.")
     if user_input.lower() == 'r':
         random_episode(show_id, show['name'])
     else:
