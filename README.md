@@ -10,9 +10,9 @@ I made this python app which pulls episode data for whatever show you want from 
 
 ## How to use it
 
-1. Go ahead and clone my repo.
-1. To run the app, you'll need to make sure you have the `requests` library installed. [See the guide](https://requests.readthedocs.io/en/master/user/install/) for installation instructions.
-1. Run `python app.py` (or `python3` if it defaults to python 2) from a terminal in the project folder.
+1. Clone the repo to your computer.
+1. Before you run the app, you can make sure you have all the requirements installed by navigating to the root of the project folder and running `pip install -r requirements.txt` from a terminal.
+1. Run `python app.py` from a terminal in the project folder.
 1. Once the app is running, follow the prompts to search for and pick a show.
 1. You pick the show, and the app picks the episode.
 1. If you don't like the episode or want to try another show, just follow the prompts.
