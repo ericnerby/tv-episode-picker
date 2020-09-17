@@ -14,8 +14,7 @@ def show_search_prompt():
 def list_shows(search_results):
     print("Search results:")
     for index, show in enumerate(search_results, 1):
-        # print("{}. {}".format(index, show['name']))
-        print("{}. {} - {}".format(index, show['name'], show['show_id']))
+        print("{}. {}".format(index, show['name']))
     show_index = int(
         input("Type the number of the show you would like to select from the list: ").strip()
     ) - 1
