@@ -14,7 +14,7 @@ def cleanup_summary(summary):
     """Takes a string and returns the same string 
     with html characters substituted or removed.
     """
-    output = re.sub(r"\</?[bp]\>", "", summary)
+    output = re.sub(r"\</?[\d\s\w]+\>", "", summary)
     output = re.sub(r"\&amp\;", "&", output)
     return output
 
