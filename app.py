@@ -1,8 +1,15 @@
-from connections import search_shows, episodes_list, show_info
+import os
 from random import choice
+
+from connections import episodes_list, search_shows, show_info
+
+
+def clear():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 
 def show_search_prompt():
+    clear()
     search = input("Please provide search terms for the show you'd like to find: ")
     search_results = search_shows(search)
     if not search_results:
@@ -12,6 +19,7 @@ def show_search_prompt():
 
 
 def list_shows(search_results):
+    clear()
     print("Search results:")
     for index, show in enumerate(search_results, 1):
         print("{}. {}".format(index, show['name']))
@@ -28,6 +36,7 @@ def list_shows(search_results):
 def random_episode(show_id, show_name):
     episodes = episodes_list(show_id)
     random_episode_info = choice(episodes)
+    clear()
     user_input = input("""
 The random episode picker has found this episode from {show_name}:
 Name: {episode_name} | Season: {season} Episode: {episode_num}
@@ -50,6 +59,7 @@ Type 'show' for new show | 'ep' for new episode | 'exit' to exit app
 
 def preview_show(search_results, show_id):
     show = show_info(show_id)
+    clear()
     print("{name} | Premiere Date: {premiered}".format(
         name = show['name'],
         premiered = show['premiered'],

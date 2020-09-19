@@ -10,6 +10,15 @@ EPISODE_LIST = 'shows/{}/episodes'
 SPECIALS_QUERYSTRING = '?specials=1'
 
 
+def cleanup_summary(summary):
+    """Takes a string and returns the same string 
+    with html characters substituted or removed.
+    """
+    output = re.sub(r"\</?[bp]\>", "", summary)
+    output = re.sub(r"\&amp\;", "&", output)
+    return output
+
+
 def search_shows(query):
     """Takes a search string and returns the results in a 
     list of dictionaries with name and show_id.
@@ -39,7 +48,7 @@ def show_info(show_id):
         response = requests.get(TVMAZE_URL + SHOW_INFO.format(show_id))
         show_info = response.json()
         if show_info['summary']:
-            summary = re.sub(r"\</?p\>", "", show_info['summary'])
+            summary = cleanup_summary(show_info['summary'])
         else:
             summary = 'none'
         return {
@@ -65,7 +74,7 @@ def episodes_list(show_id, specials=False):
         results = []
         for episode in results_json:
             if episode['summary']:
-                description = re.sub(r"\</?p\>", "", episode['summary'])
+                description = cleanup_summary(episode['summary'])
             else:
                 description = 'none'
             results.append({
